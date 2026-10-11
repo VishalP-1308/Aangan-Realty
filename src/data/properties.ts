@@ -35,7 +35,7 @@ export type Property = {
   locality: string;
   city: string;
   /** absolute rupees — kept numeric so filtering and sorting stay honest. 0 = price on request */
-  price: number | null;
+  price: number;
   /** true when `price` is the entry point of a project, not a single unit */
   priceFrom?: boolean;
   /** monthly rupees for rentals, otherwise null */
@@ -111,7 +111,7 @@ export const properties: Property[] = [
     title: "Sky 97 by Prarambh Group",
     locality: "Shela",
     city: "Ahmedabad",
-    price: null,
+    price: 0,
     priceFrom: true,
     rent: null,
     type: "Apartment",
@@ -489,7 +489,7 @@ export function displayPrice(p: Property): string {
 }
 
 /** Rentals have to sort against sale stock somehow — annualise them. */
-export function sortValue(p: Property): number | null {
+export function sortValue(p: Property): number {
   return p.rent ? p.rent * 12 : p.price;
 }
 
