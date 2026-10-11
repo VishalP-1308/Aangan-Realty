@@ -10,18 +10,18 @@ export type Partner = {
 
 export const partners: Partner[] = [
   {
-    name: 'Mohit Patel',
-    role: 'Partner',
-    phone: '+91 94286 62009',
-    phoneHref: '+919428662009',
-    whatsapp: '919428662009',
-  },
-  {
     name: 'Vishal Patel',
     role: 'Partner',
     phone: '+91 96646 44295',
     phoneHref: '+919664644295',
     whatsapp: '919664644295',
+  },
+  {
+    name: 'Mohit Patel',
+    role: 'Partner',
+    phone: '+91 94286 62009',
+    phoneHref: '+919428662009',
+    whatsapp: '919428662009',
   },
 ]
 
