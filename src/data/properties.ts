@@ -87,7 +87,7 @@ export const properties: Property[] = [
     description: [
       "A well-planned 5BHK tenement in one of Ahmedabad’s most sought-after residential pockets — generous living spaces, a large plot, a private terrace and ample open areas for comfortable family living.",
       "The plot is 320 var with 280 var of construction. A wide front open space takes parking and gardening, a rear open area works for utility, and the terrace is large enough for evenings and family gatherings.",
-      "Behind Indian Bank, near Vijay Nagar Cross Road, Ankur, Naranpura — 380013. Equally a family home or a long-term investment.",
+      // "Behind Indian Bank, near Vijay Nagar Cross Road, Ankur, Naranpura — 380013. Equally a family home or a long-term investment.",
     ],
     highlights: [
       "320 var plot, 280 var (≈2,520 sq.ft.) construction",
