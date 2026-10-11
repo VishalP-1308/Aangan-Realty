@@ -66,6 +66,7 @@
 
   body {
     @apply bg-sand-50 text-ink-900 font-sans antialiased;
+    overflow-x: hidden;
   }
 
   ::selection {
@@ -376,6 +377,31 @@
 
 .p-galleria .p-galleria-item-nav:not(.p-disabled):hover {
   @apply bg-ink-950/70 text-white;
+}
+
+.p-galleria-mask {
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.p-galleria-mask .p-galleria {
+  width: 100%;
+  height: 100%;
+}
+
+.p-galleria-mask .p-galleria-close {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.p-galleria-mask .p-galleria-close:focus-visible {
+  outline: 2px solid var(--color-brass-300);
+  outline-offset: 3px;
 }
 
 .p-galleria-thumbnail-item-content {

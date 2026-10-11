@@ -21,7 +21,7 @@ export default function PropertyDetail() {
   const { slug = '' } = useParams()
   const property = findProperty(slug)
   const [galleryIndex, setGalleryIndex] = useState(0)
-  // PrimeReact's fullscreen Galleria is imperative — no visible prop.
+  const [isFullscreen, setIsFullscreen] = useState(false)
   const lightbox = useRef<Galleria>(null)
 
   if (!property) return <Navigate to="/properties" replace />
@@ -51,7 +51,7 @@ export default function PropertyDetail() {
         ? `${formatPrice(Math.round(p.price / p.area))} / sq.ft.`
         : null
 
-  const mapQuery = encodeURIComponent(`${p.locality}, ${p.city}, India`)
+  // const mapQuery = encodeURIComponent(`${p.locality}, ${p.city}, India`)
 
   const itemTemplate = (src: string) => (
     <img
@@ -146,20 +146,34 @@ export default function PropertyDetail() {
             value={p.images}
             activeIndex={galleryIndex}
             onItemChange={(e) => setGalleryIndex(e.index)}
+            onShow={() => setIsFullscreen(true)}
+            onHide={() => setIsFullscreen(false)}
             fullScreen
             circular
             showItemNavigators
             showThumbnails={false}
+            pt={{
+              closeButton: {
+                className:
+                  'fixed right-4 top-4 z-[1001] !m-0 !flex !h-12 !w-12 !items-center !justify-center !rounded-full !bg-white/15 !text-white shadow-lg backdrop-blur-sm transition-colors hover:!bg-white/30 sm:right-6 sm:top-6',
+              },
+              closeIcon: { className: '!h-6 !w-6' },
+            }}
             item={(src: string) => (
               <img src={src} alt={p.title} className="max-h-[92svh] max-w-[94vw] object-contain" />
             )}
           />
+          {isFullscreen && (
+          <p className="sr-only">
+            Press Escape or use the close button to exit the fullscreen gallery.
+          </p>
+          )}
         </div>
       </section>
 
       {/* ------------------------------------------------------------ body */}
-      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
-        <div className="lg:grid lg:grid-cols-[1fr_23rem] lg:gap-16">
+      <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
+        <div className="xl:grid xl:grid-cols-[minmax(0,1fr)_23rem] xl:items-start xl:gap-16">
           <div className="min-w-0">
             {/* quick stats */}
             <Reveal>
@@ -220,17 +234,17 @@ export default function PropertyDetail() {
             {/* spec + amenities */}
             <Reveal className="mt-16">
               <Accordion multiple activeIndex={[0]}>
-                <AccordionTab header="Specification">
+                <AccordionTab header="Specification" className="gap-2!">
                   <dl className="grid gap-x-10 gap-y-5 sm:grid-cols-2">
                     {specs.map((s) => (
                       <div
                         key={s.label}
                         className="flex items-baseline justify-between gap-4 border-b border-ink-900/6 pb-3"
                       >
-                        <dt className="text-xs uppercase tracking-[0.14em] text-ink-400">
+                        <dt className="min-w-0 text-xs uppercase tracking-[0.14em] text-ink-400">
                           {s.label}
                         </dt>
-                        <dd className="text-right text-sm text-ink-900">{s.value}</dd>
+                            <dd className="min-w-0 text-right text-sm text-ink-900">{s.value}</dd>
                       </div>
                     ))}
                   </dl>
@@ -271,7 +285,7 @@ export default function PropertyDetail() {
             </Reveal>
 
             {/* location */}
-            <Reveal className="mt-16">
+            {/* <Reveal className="mt-16">
               <h3 className="text-xl">The neighbourhood</h3>
               <p className="mt-4 text-sm leading-relaxed text-ink-600">
                 {p.locality}, {p.city}. Exact door number is shared with
@@ -286,11 +300,11 @@ export default function PropertyDetail() {
                   className="h-[22rem] w-full border-0"
                 />
               </div>
-            </Reveal>
+            </Reveal> */}
           </div>
 
           {/* ------------------------------------------------------ aside */}
-          <aside className="mt-16 lg:mt-0">
+          <aside className="mt-14 xl:mt-0">
             <div className="sticky top-28 space-y-6">
               <div className="overflow-hidden rounded-2xl border border-ink-900/10 bg-white shadow-[var(--shadow-soft)]">
                 <div className="flex items-center gap-4 border-b border-ink-900/8 p-6">
